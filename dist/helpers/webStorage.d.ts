@@ -10,4 +10,5 @@ export declare class WebStorageHelper {
     static getStorage(sType: STORAGE): IWebStorage;
     static getWStorage(sType: STORAGE): IWebStorage;
     static isStorageAvailable(sType: STORAGE): any;
+    static genStorageEvent(sType: STORAGE, sKey: string, value: any, oldValue: any): StorageEvent;
 }
