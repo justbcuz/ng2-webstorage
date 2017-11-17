@@ -11,9 +11,13 @@ const STORAGEAVAILABILITY = {[STORAGE.local]: null, [STORAGE.session]: null};
 export class WebStorageHelper {
 
 	static store(sType:STORAGE, sKey:string, value:any):void {
+
+		const oldValue = WebStorageHelper.retrieveFromStorage(sType, sKey);
+		const storageEvent = this.genStorageEvent(sType, sKey, value, oldValue);
+
 		this.getStorage(sType).setItem(sKey, JSON.stringify(value));
 		CACHED[sType][sKey] = value;
-		StorageObserverHelper.emit(sType, sKey, value);
+		StorageObserverHelper.emit(sType, sKey, storageEvent);
 	}
 
 	static retrieve(sType:STORAGE, sKey:string):string {
@@ -42,8 +46,9 @@ export class WebStorageHelper {
 			StorageObserverHelper.emit(sType, sKey, null);
 		}
 		else if(value !== CACHED[sType][sKey]) {
+            const storageEvent = this.genStorageEvent(sType, sKey, value, CACHED[sType][sKey]);
 			CACHED[sType][sKey] = value;
-			StorageObserverHelper.emit(sType, sKey, value);
+			StorageObserverHelper.emit(sType, sKey, storageEvent);
 		}
 	}
 
@@ -104,5 +109,21 @@ export class WebStorageHelper {
 		if(!isAvailable) console.warn(`${STORAGE_NAMES[sType]} storage unavailable, Ng2Webstorage will use a fallback strategy instead`);
 		return STORAGEAVAILABILITY[sType] = isAvailable;
 	}
+
+    static genStorageEvent(sType:STORAGE, sKey:string, value:any, oldValue:any): StorageEvent {
+        const sTypeString = sType == STORAGE.local ? 'local' : 'session';
+        const storageEvent = new StorageEvent(sTypeString, <StorageEventInit>{
+            key: sKey,
+            newValue: value,
+            oldValue: oldValue,
+            storageArea: this.getStorage(sType),
+            url: null,
+            scoped: false,
+            bubbles: false,
+            cancelable: false
+        });
+
+        return storageEvent;
+    }
 
 }

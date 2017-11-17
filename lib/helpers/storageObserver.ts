@@ -12,9 +12,9 @@ export class StorageObserverHelper {
 		return this.observers[oKey] = new EventEmitter();
 	}
 
-	static emit(sType:STORAGE, sKey:string, value:any):void {
+	static emit(sType:STORAGE, sKey:string, event:StorageEvent):void {
 		let oKey = this.genObserverKey(sType, sKey);
-		if(oKey in this.observers) this.observers[oKey].emit(value);
+		if(oKey in this.observers) this.observers[oKey].emit(event);
 	}
 
 	static genObserverKey(sType:STORAGE, sKey:string):string {

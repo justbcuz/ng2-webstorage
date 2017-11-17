@@ -8,10 +8,10 @@ var StorageObserverHelper = (function () {
             return this.observers[oKey];
         return this.observers[oKey] = new EventEmitter();
     };
-    StorageObserverHelper.emit = function (sType, sKey, value) {
+    StorageObserverHelper.emit = function (sType, sKey, event) {
         var oKey = this.genObserverKey(sType, sKey);
         if (oKey in this.observers)
-            this.observers[oKey].emit(value);
+            this.observers[oKey].emit(event);
     };
     StorageObserverHelper.genObserverKey = function (sType, sKey) {
         return sType + '|' + sKey;
