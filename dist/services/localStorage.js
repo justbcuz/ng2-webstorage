@@ -19,7 +19,6 @@ var LocalStorageService = (function (_super) {
     return LocalStorageService;
 }(WebStorageService));
 export { LocalStorageService };
-export { LocalStorageService };
 LocalStorageService.decorators = [
     { type: Injectable },
 ];

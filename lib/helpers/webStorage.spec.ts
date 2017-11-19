@@ -25,17 +25,34 @@ describe('helper:webStorage', () => {
 
 		});
 
-		it('should emit an event to the subscribers', (done) => {
+		it('should emit an event to the subscribers with NEW value', (done) => {
 
-			let event = StorageObserverHelper.observe(STORAGE.local, 'webStorage:local:key'),
-				value = 'session value';
+			let event = StorageObserverHelper.observe(STORAGE.local, 'webStorage:local:keyNew'),
+				newValue = 'session new value',
+				oldValue = 'session old value';
 
-			event.subscribe((data) => {
-				expect(data).toEqual(value);
+			event.subscribe((data: StorageEvent) => {
+				expect(data.newValue).toEqual(newValue);
 				done();
 			});
 
-			WebStorageHelper.store(STORAGE.local, 'webStorage:local:key', value);
+			WebStorageHelper.store(STORAGE.local, 'webStorage:local:keyNew', newValue);
+		});
+
+		it('should emit an event to the subscribers with OLD value', (done) => {
+
+			let event = StorageObserverHelper.observe(STORAGE.local, 'webStorage:local:keyOld'),
+				newValue = 'session new value',
+				oldValue = 'session old value';
+
+			WebStorageHelper.store(STORAGE.local, 'webStorage:local:keyOld', oldValue);
+
+			event.subscribe((data: StorageEvent) => {
+				expect(data.oldValue).toEqual(oldValue);
+				done();
+			});
+
+			WebStorageHelper.store(STORAGE.local, 'webStorage:local:keyOld', newValue);
 		});
 
 	});

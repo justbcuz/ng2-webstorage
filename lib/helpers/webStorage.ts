@@ -13,7 +13,7 @@ export class WebStorageHelper {
 	static store(sType:STORAGE, sKey:string, value:any):void {
 
 		const oldValue = WebStorageHelper.retrieveFromStorage(sType, sKey);
-		const storageEvent = this.genStorageEvent(sType, sKey, value, oldValue);
+		const storageEvent: StorageEvent = this.genStorageEvent(sType, sKey, value, oldValue);
 
 		this.getStorage(sType).setItem(sKey, JSON.stringify(value));
 		CACHED[sType][sKey] = value;
