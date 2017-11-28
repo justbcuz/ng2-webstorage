@@ -46,7 +46,7 @@ export class WebStorageHelper {
 			StorageObserverHelper.emit(sType, sKey, null);
 		}
 		else if(value !== CACHED[sType][sKey]) {
-            const storageEvent = this.genStorageEvent(sType, sKey, value, CACHED[sType][sKey]);
+			const storageEvent = this.genStorageEvent(sType, sKey, value, CACHED[sType][sKey]);
 			CACHED[sType][sKey] = value;
 			StorageObserverHelper.emit(sType, sKey, storageEvent);
 		}
