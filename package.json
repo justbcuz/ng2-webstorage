@@ -1,7 +1,7 @@
 {
-  "name": "ngx-webstorage",
-  "version": "1.8.0",
-  "description": "angular2 webstorage manager",
+  "name": "ngx-webstorage-old-value",
+  "version": "1.0.0",
+  "description": "Angular webstorage manager which provides old localstorage value on change",
   "main": "bundles/core.umd.js",
   "module": "dist/app.js",
   "typings": "dist/app.d.ts",
@@ -57,7 +57,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PillowPillow/ng2-webstorage.git"
+    "url": "git+https://github.com/justbcuz/ngx-webstorage-old-value.git"
   },
   "keywords": [
     "typescript",
@@ -66,10 +66,10 @@
     "localstorage",
     "sessionStorage"
   ],
-  "author": "Nicolas Gaignoux <https://github.com/PillowPillow>",
+  "author": "Justin Leger <https://github.com/justbcuz>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/PillowPillow/ng2-webstorage/issues"
+    "url": "https://github.com/justbcuz/ngx-webstorage-old-value/issues"
   },
-  "homepage": "https://github.com/PillowPillow/ng2-webstorage#readme"
+  "homepage": "https://github.com/justbcuz/ngx-webstorage-old-value#readme"
 }
