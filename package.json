@@ -1,6 +1,6 @@
 {
   "name": "ngx-webstorage-old-value",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Angular webstorage manager which provides old localstorage value on change",
   "main": "bundles/core.umd.js",
   "module": "dist/app.js",
@@ -57,15 +57,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/justbcuz/ngx-webstorage-old-value.git"
+    "url": "git+https://github.com/justbcuz/ng2-webstorage/tree/jml-add-oldValue.git"
   },
-  "keywords": [
-    "typescript",
-    "angular2",
-    "ng2",
-    "localstorage",
-    "sessionStorage"
-  ],
+  "keywords": ["typescript", "angular2", "ng2", "localstorage", "sessionStorage"],
   "author": "Justin Leger <https://github.com/justbcuz>",
   "license": "MIT",
   "bugs": {

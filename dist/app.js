@@ -30,9 +30,7 @@ var Ng2Webstorage = (function () {
                 {
                     provide: WebstorageConfig,
                     useFactory: provideConfig,
-                    deps: [
-                        WEBSTORAGE_CONFIG
-                    ]
+                    deps: [WEBSTORAGE_CONFIG]
                 }
             ]
         };
@@ -40,10 +38,14 @@ var Ng2Webstorage = (function () {
     Ng2Webstorage.prototype.initStorageListener = function () {
         var _this = this;
         if (typeof window !== 'undefined') {
-            window.addEventListener('storage', function (event) { return _this.ngZone.run(function () {
-                var storage = window.sessionStorage === event.storageArea ? STORAGE.session : STORAGE.local;
-                WebStorageHelper.refresh(storage, event.key);
-            }); });
+            window.addEventListener('storage', function (event) {
+                return _this.ngZone.run(function () {
+                    var storage = window.sessionStorage === event.storageArea ? STORAGE.session : STORAGE.local;
+                    setTimeout(function () {
+                        WebStorageHelper.refresh(storage, event.key);
+                    });
+                });
+            });
         }
     };
     return Ng2Webstorage;
